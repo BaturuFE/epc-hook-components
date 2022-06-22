@@ -7,6 +7,7 @@ import Iconfont from './Iconfont';
 import { PartsListOperation } from '@baturu/yitian-sdk';
 import { first, isEmpty, size } from 'lodash';
 import { ColumnsType, ColumnType } from 'antd/lib/table';
+import defaultPng from '../assets/default.png';
 
 // 配件信息对象
 interface PartGenericFieldDTO {
@@ -47,7 +48,7 @@ const StyledGroupDataMissing = styled.div`
   .image {
     width: 236px;
     height: 236px;
-    background: url('../assets/default.png');
+    background: url(${defaultPng});
   }
   .msg {
     margin-top: 10px;

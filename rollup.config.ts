@@ -6,9 +6,8 @@ import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 import postcss from "rollup-plugin-postcss";
-// @ts-ignore
+import image from '@rollup/plugin-image';
 import nested from 'postcss-nested'; // 处理less
-// @ts-ignore
 import cssnano from 'cssnano';
 
 export default defineConfig({
@@ -29,6 +28,7 @@ export default defineConfig({
   plugins: [
     typescript({ tsconfig: './tsconfig.json' }),
     nodeResolve(),
+    image(),
     replace({
       "process.env.NODE_ENV": JSON.stringify("development"),
       preventAssignment: false,
@@ -37,7 +37,7 @@ export default defineConfig({
       use: { less: { javascriptEnabled: true }, sass: null, stylus: null },
       plugins: [
         nested(),
-        cssnano()
+        cssnano(),
       ],
       extensions: [".css",'.less'],
       extract: false,
