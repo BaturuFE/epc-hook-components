@@ -79,7 +79,7 @@ export const EpcTable: FC<{
   const firstCols = first(props.tableGroupData)?.details;
   const columns: ColumnsType<PartsTableData> = !isEmpty(firstCols)
     ? firstCols!
-      .concat({ type: '操作😄', typeCode: 'action' } as PartGenericFieldDTO)
+      .concat({ type: '操作', typeCode: 'action' } as PartGenericFieldDTO)
       .map<ColumnType<PartsTableData>>((item) => ({
         title: item.type,
         dataIndex: item.typeCode,
