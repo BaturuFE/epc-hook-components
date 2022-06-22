@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "rollup --config rollup.config.ts --configPlugin typescript --watch",
     "build": "rollup --config rollup.config.ts --configPlugin typescript",
-    "host": "http-server -g -p 8082 --cors='*' dist"
+    "host": "http-server -g -p 8082 --cors='*' dist",
+    "release": "npm run build && bump -acpt && npm publish"
   },
   "author": "Baturu",
   "license": "ISC",
@@ -42,6 +43,7 @@
     "rollup": "^2.75.6",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-terser": "^7.0.2",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "version-bump-prompt": "^6.1.0"
   }
 }

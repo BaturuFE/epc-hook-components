@@ -6,12 +6,14 @@ import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 import postcss from "rollup-plugin-postcss";
-import nested from "postcss-nested"; // 处理less
-import cssnano from "cssnano";
+// @ts-ignore
+import nested from 'postcss-nested'; // 处理less
+// @ts-ignore
+import cssnano from 'cssnano';
 
 export default defineConfig({
   input: './src/main.ts',
-  output: [{
+  output: {
     format: 'umd',
     file: './dist/lib.js',
     name: 'epc-hook-components',
@@ -23,7 +25,7 @@ export default defineConfig({
       'lodash': 'lodash',
       'classnames': 'classnames',
     }
-  }],
+  },
   plugins: [
     typescript({ tsconfig: './tsconfig.json' }),
     nodeResolve(),
