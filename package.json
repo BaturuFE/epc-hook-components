@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "dev": "rollup --config rollup.config.ts --configPlugin typescript --watch",
-    "build": "rollup --config rollup.config.ts --configPlugin typescript",
+    "build": "cross-env NODE_ENV=production rollup --config rollup.config.ts --configPlugin typescript",
     "host": "http-server -g -p 8082 --cors='*' dist",
     "release": "npm run build && bump -acpt && npm publish"
   },
@@ -20,7 +20,7 @@
     "@babel/core": "^7.18.5",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
-    "@baturu/yitian-sdk": "^2.5.0-beta.2",
+    "@baturu/yitian-sdk": "^2.5.0",
     "@emotion/babel-plugin": "^11.9.2",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
@@ -36,6 +36,7 @@
     "antd": "^4.21.3",
     "babel-plugin-import": "^1.13.5",
     "classnames": "^2.3.1",
+    "cross-env": "^7.0.3",
     "cssnano": "^5.1.12",
     "http-server": "^14.1.1",
     "less": "^4.1.3",

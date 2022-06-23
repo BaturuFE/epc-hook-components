@@ -19,6 +19,7 @@ const ActionButton = styled.div`
     color: #bfbfbf;
   }
 `;
+
 export const ActionItem: FC<{
   operationAvailable?: boolean | null;
   onDetailClick: MouseEventHandler<HTMLDivElement>;
@@ -74,7 +75,6 @@ export const ActionItem: FC<{
       </ActionButton>
     );
   }
-  console.log('operationAvailable', props.operationAvailable)
   return (
     <>
       {props.operationAvailable !== false && (

@@ -12,7 +12,7 @@ created ./dist/lib.js in 16.1s
 ```
 2. 将打包出来的 `dist` 目录整个上传到静态资源服务器去
 3. 静态资源服务器需配置允许 js 文件请求跨域 `Access-Control-Allow-Origin: *`
-```bash
+```shell
 # /etc/nginx/nginx.conf
 #
 # nginx 服务器配置

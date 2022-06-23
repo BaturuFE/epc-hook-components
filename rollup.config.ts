@@ -20,7 +20,6 @@ export default defineConfig({
     globals: {
       react: 'React',
       'react-dom': 'ReactDOM',
-      '@emotion/styled': 'styled',
       'lodash': 'lodash',
       'classnames': 'classnames',
     }
@@ -30,7 +29,7 @@ export default defineConfig({
     nodeResolve(),
     image(),
     replace({
-      "process.env.NODE_ENV": JSON.stringify("development"),
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
       preventAssignment: false,
     }),
     postcss({
@@ -47,13 +46,15 @@ export default defineConfig({
       exclude: 'node_modules/**',
       extensions: ['.js', '.ts', '.jsx', '.tsx'],
       presets: ['@babel/env', '@babel/preset-react'],
-      plugins: [['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }]],
-      // plugins: ["@emotion"],
+      plugins: [
+        ['@emotion'],
+        ['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }],
+      ],
     }),
     commonjs({ include: 'node_modules/**' }),
-    terser(),
+    terser({ format: { comments: false } }),
   ],
-  external: ['react', 'react-dom', '@emotion/styled', 'lodash', 'classnames'],
+  external: ['react', 'react-dom', 'lodash', 'classnames'],
   onwarn(warning, warn) {
     if (warning.id && warning.id.includes('node_modules')) return;
     if (warning.importer && warning.importer.includes('node_modules')) return;
