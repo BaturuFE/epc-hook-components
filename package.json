@@ -1,6 +1,6 @@
 {
   "name": "@baturu/epc-hook-components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Baturu epc hook components",
   "main": "dist/lib.js",
   "types": "dist/main.d.ts",
@@ -20,7 +20,7 @@
     "@babel/core": "^7.18.5",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
-    "@baturu/yitian-sdk": "^2.5.0",
+    "@baturu/yitian-sdk": "^2.5.3",
     "@emotion/babel-plugin": "^11.9.2",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
