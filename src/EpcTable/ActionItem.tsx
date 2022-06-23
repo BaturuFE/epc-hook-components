@@ -65,13 +65,13 @@ export const ActionItem: FC<{
   }
   let buttonAdd: ReactNode | null = null;
   if (props.isFromSDK) {
-    const textDel = props.allowCancelAddedParts ? '取消添加' : '已添加';
+    const textDel = props.allowCancelAddedParts ? '取消添加' : '添加';
     buttonAdd = (
       <ActionButton
         className={cns({ disabled: props.isPartsCodeAdded && !props.allowCancelAddedParts })}
         onClick={props.onAddPart}
       >
-        {props.isPartsCodeAdded ? '添加' : textDel}
+        {props.isPartsCodeAdded ? '已添加' : textDel}
       </ActionButton>
     );
   }
