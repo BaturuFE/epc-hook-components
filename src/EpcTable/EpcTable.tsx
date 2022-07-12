@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styled from '@emotion/styled';
 import { Table } from 'antd';
 import cns from 'classnames';
@@ -9,6 +9,7 @@ import { GroupDataMissing } from './GroupDataMissing';
 import { DetailItem } from './DetailItem';
 import { PartGenericFieldDTO, PartsTableData } from '../types/data';
 import { ActionItem } from './ActionItem';
+import { useAsync, useMount } from 'react-use';
 
 const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
   .ant-table table {
@@ -119,8 +120,15 @@ export const EpcTable: FC<{
         },
       }))
     : [];
-  const header = document.querySelector<HTMLDivElement>('.epc-table .ant-table-header');
-  const y = Number(props.containerHeight.replace(/px/g, '')) - (header?.offsetHeight || 38);
+
+  const [y, setY] = useState(Number(props.containerHeight.replace(/px/g, '')) - 38);
+  useAsync(async () => { // 福特车型的表头文字可能会换行，导致高度增加，所以这里动态计算一下表头高度
+    await Promise.resolve(); // 这里的目标是要实现类似于 Vue.nextTick 的效果
+    const header = document.querySelector<HTMLDivElement>('.epc-table .ant-table-header');
+    const headerHeight = header?.offsetHeight || 38;
+    setY(Number(props.containerHeight.replace(/px/g, '')) - headerHeight);
+  });
+
   return (
     <>
       {isEmpty(props.tableGroupData) && <GroupDataMissing />}
