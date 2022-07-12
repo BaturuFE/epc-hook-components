@@ -119,7 +119,8 @@ export const EpcTable: FC<{
         },
       }))
     : [];
-  const y = Number(props.containerHeight.replace(/px/g, '')) - 38;
+  const header = document.querySelector<HTMLDivElement>('.epc-table .ant-table-header');
+  const y = Number(props.containerHeight.replace(/px/g, '')) - (header?.offsetHeight || 38);
   return (
     <>
       {isEmpty(props.tableGroupData) && <GroupDataMissing />}
@@ -127,16 +128,15 @@ export const EpcTable: FC<{
         <StyledTable
           size="small"
           tableLayout="fixed"
+          className="epc-table"
           scroll={{ y }}
           pagination={false}
           columns={columns}
           rowKey={row => row.dataIndex}
-          rowClassName={row =>
-            cns({
-              selected: props.selectedIndexes.includes(row.dataIndex),
-              red: !row.vinAvailable,
-            })
-          }
+          rowClassName={row => cns({
+            selected: props.selectedIndexes.includes(row.dataIndex),
+            red: !row.vinAvailable,
+          })}
           onRow={row => ({
             'data-index': row.dataIndex,
             onClick: () => props.onRowClick(row),
