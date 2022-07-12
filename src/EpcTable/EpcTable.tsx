@@ -9,7 +9,7 @@ import { GroupDataMissing } from './GroupDataMissing';
 import { DetailItem } from './DetailItem';
 import { PartGenericFieldDTO, PartsTableData } from '../types/data';
 import { ActionItem } from './ActionItem';
-import { useAsync, useMount } from 'react-use';
+import { useAsync } from 'react-use';
 
 const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
   .ant-table table {
