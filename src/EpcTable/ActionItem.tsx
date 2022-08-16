@@ -78,9 +78,7 @@ export const ActionItem: FC<{
   return (
     <>
       {props.operationAvailable !== false && (
-        <>
-          <ActionButton onClick={props.onDetailClick}>详情</ActionButton>
-        </>
+        <ActionButton onClick={props.onDetailClick}>详情</ActionButton>
       )}
       {extraOperations || buttonAdd}
     </>

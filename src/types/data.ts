@@ -1,4 +1,6 @@
 // 配件信息对象
+import { CSSProperties } from 'react';
+
 export interface PartGenericFieldDTO {
   // 前端展示的表头信息
   type: string;
@@ -26,4 +28,11 @@ export interface PartsTableData {
   operationAvailable: boolean | null;
   // 配件信息集合
   details: PartGenericFieldDTO[];
+}
+
+export interface PartsListConfig {
+  field: string;
+  title: string;
+  headerStyle?: CSSProperties;
+  columnStyle?: CSSProperties;
 }

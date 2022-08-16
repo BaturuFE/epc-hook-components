@@ -1,13 +1,13 @@
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import styled from '@emotion/styled';
 import { Table } from 'antd';
 import cns from 'classnames';
 import { PartsListOperation } from '@baturu/yitian-sdk';
-import { first, isEmpty } from 'lodash';
+import { isEmpty, omit } from 'lodash';
 import { ColumnsType, ColumnType } from 'antd/lib/table';
 import { GroupDataMissing } from './GroupDataMissing';
 import { DetailItem } from './DetailItem';
-import { PartGenericFieldDTO, PartsTableData } from '../types/data';
+import { PartsListConfig, PartsTableData } from '../types/data';
 import { ActionItem } from './ActionItem';
 import { useAsync } from 'react-use';
 
@@ -71,33 +71,31 @@ export const EpcTable: FC<{
   partsListOperation: PartsListOperation[];
   onCorrectionClick: (partsCode: string) => void;
   containerHeight: string;
+  partsListConfigs: PartsListConfig[];
   onDetailClick: (item: PartsTableData) => void;
   onAddPart: (part: PartsTableData) => void;
   onOperationClick: (item: PartsListOperation, part: PartsTableData) => void;
   addedPartsCodes: string[];
   allowCancelAddedParts: boolean;
 }> = (props) => {
-  const firstCols = first(props.tableGroupData)?.details;
-  const columns: ColumnsType<PartsTableData> = !isEmpty(firstCols)
-    ? firstCols!
-      .concat({ type: '操作', typeCode: 'action' } as PartGenericFieldDTO)
-      .map<ColumnType<PartsTableData>>((item) => ({
-        title: item.type,
-        dataIndex: item.typeCode,
-        width:
-          {
-            showPosition: 82,
-            quantity: 72,
-            partsCode: 154,
-            partsCodeField: 154,
-            partsName: 200,
-            btrPartsNames: 116,
-          }[item.typeCode] || undefined,
+  const columns: ColumnsType<PartsTableData> = !isEmpty(props.partsListConfigs)
+    ? props.partsListConfigs
+      .concat({ field: 'action', title: '操作', headerStyle: { width: 150 } })
+      .map<ColumnType<PartsTableData>>(conf => ({
+        title: conf.title,
+        dataIndex: conf.field,
+        width: conf.headerStyle?.width,
+        onHeaderCell() {
+          return { style: omit(conf.headerStyle, 'width') }
+        },
+        onCell() {
+          return { style: conf.columnStyle };
+        },
         render(_, record) {
-          const detail = record.details.find((d) => d.typeCode === item.typeCode);
+          const detail = record.details.find((d) => d.typeCode === conf.field);
           return (
             <>
-              {item.typeCode === 'action' ? (
+              {conf.field === 'action' ? (
                 <ActionItem
                   operationAvailable={record.operationAvailable}
                   onDetailClick={() => props.onDetailClick(record)}
@@ -121,6 +119,9 @@ export const EpcTable: FC<{
       }))
     : [];
 
+  const x = useMemo(() => columns
+    .reduce((sum, conf) => sum + parseInt(conf.width as string, 10) || 0, 0),
+    [columns]);
   const [y, setY] = useState(Number(props.containerHeight.replace(/px/g, '')) - 38);
   useAsync(async () => { // 福特车型的表头文字可能会换行，导致高度增加，所以这里动态计算一下表头高度
     await Promise.resolve(); // 这里的目标是要实现类似于 Vue.nextTick 的效果
@@ -137,7 +138,7 @@ export const EpcTable: FC<{
           size="small"
           tableLayout="fixed"
           className="epc-table"
-          scroll={{ y }}
+          scroll={{ x, y }}
           pagination={false}
           columns={columns}
           rowKey={row => row.dataIndex}
