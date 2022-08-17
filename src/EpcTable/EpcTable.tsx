@@ -37,11 +37,15 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
   .ant-table-row {
     &.selected {
       background: var(--primary-epc-table-select-bg);
-      border: 1px solid var(--primary-epc-table-select-border);
-      border-top-width: 2px;
-      border-bottom: none;
+      border-top: 2px solid var(--primary-epc-table-select-border);
+      border-left: 1px solid var(--primary-epc-table-select-border);
+      border-right: 1px solid var(--primary-epc-table-select-border);
       box-shadow: inset -1px 0 0 var(--primary-epc-table-select-border), // right
         inset 1px 0 0 var(--primary-epc-table-select-border); // left
+      &:hover {
+        box-shadow: inset -1px 0 0 var(--primary-epc-table-select-border), // right
+        inset 1px 0 0 var(--primary-epc-table-select-border); // left
+      }
       + .ant-table-row {
         border-top: 2px solid var(--primary-epc-table-select-border);
         &.selected {
