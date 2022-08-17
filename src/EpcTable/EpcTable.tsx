@@ -128,7 +128,7 @@ export const EpcTable: FC<{
     const header = document.querySelector<HTMLDivElement>('.epc-table .ant-table-header');
     const headerHeight = header?.offsetHeight || 38;
     setY(Number(props.containerHeight.replace(/px/g, '')) - headerHeight);
-  });
+  }, [props.partsListConfigs]);
 
   return (
     <>
