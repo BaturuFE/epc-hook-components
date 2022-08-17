@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Table } from 'antd';
 import cns from 'classnames';
 import { PartsListOperation } from '@baturu/yitian-sdk';
-import { isEmpty, omit } from 'lodash';
+import { assign, isEmpty, omit } from 'lodash';
 import { ColumnsType, ColumnType } from 'antd/lib/table';
 import { GroupDataMissing } from './GroupDataMissing';
 import { DetailItem } from './DetailItem';
@@ -84,12 +84,12 @@ export const EpcTable: FC<{
       .map<ColumnType<PartsTableData>>(conf => ({
         title: conf.title,
         dataIndex: conf.field,
-        width: conf.headerStyle?.width,
+        width: conf.headerStyle?.width || conf.columnStyle?.width,
         onHeaderCell() {
-          return { style: omit(conf.headerStyle, 'width') }
+          return { style: omit(assign(conf.columnStyle, conf.headerStyle), 'width') }
         },
         onCell() {
-          return { style: conf.columnStyle };
+          return { style: omit(conf.columnStyle, 'width') };
         },
         render(_, record) {
           const detail = record.details.find((d) => d.typeCode === conf.field);
