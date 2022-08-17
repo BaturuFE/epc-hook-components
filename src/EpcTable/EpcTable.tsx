@@ -35,22 +35,31 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
     }
   }
   .ant-table-row {
-    box-sizing: border-box;
-    width: 100%;
     &.selected {
       background: var(--primary-epc-table-select-bg);
-      border: 2px solid var(--primary-epc-table-select-border);
+      border: 1px solid var(--primary-epc-table-select-border);
       border-bottom: none;
+      box-shadow: inset 0 1px 0 0 var(--primary-epc-table-select-border), // top
+        inset -1px 0 0 var(--primary-epc-table-select-border), // right
+        inset 1px 0 0 var(--primary-epc-table-select-border); // left
       + .ant-table-row {
-        border-top: 2px solid var(--primary-epc-table-select-border);
+        border-top: 1px solid var(--primary-epc-table-select-border);
+        box-shadow: inset 0 1px 0 0 var(--primary-epc-table-select-border); // top
         &.selected {
           border-top: none;
-          border-bottom: 2px solid var(--primary-epc-table-select-border);
+          border-bottom: 1px solid var(--primary-epc-table-select-border);
+          box-shadow: inset -1px 0 0 var(--primary-epc-table-select-border), // right
+            inset 1px 0 0 var(--primary-epc-table-select-border), // left
+            inset 0 -1px 0 0 var(--primary-epc-table-select-border); // bottom
         }
       }
     }
     &:last-child.selected {
-      border-bottom: 2px solid var(--primary-epc-table-select-border);
+      border-bottom: 1px solid var(--primary-epc-table-select-border);
+      border-top-width: 2px;
+      box-shadow: inset -1px 0 0 var(--primary-epc-table-select-border), // right
+        inset 1px 0 0 var(--primary-epc-table-select-border), // left
+        inset 0 -1px 0 0 var(--primary-epc-table-select-border); // bottom
     }
     &.red {
       color: #eb3341;
