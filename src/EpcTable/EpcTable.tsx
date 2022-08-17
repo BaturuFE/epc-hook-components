@@ -31,6 +31,7 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
     th {
       color: #606266;
       background-color: #f5f5f5;
+      font-weight: bold;
     }
   }
   .ant-table-row {
@@ -84,6 +85,7 @@ export const EpcTable: FC<{
       .map<ColumnType<PartsTableData>>(conf => ({
         title: conf.title,
         dataIndex: conf.field,
+        align: conf.field === 'action' ? 'left' : 'center',
         width: conf.headerStyle?.width || conf.columnStyle?.width,
         onHeaderCell() {
           return { style: omit(assign({}, conf.columnStyle, conf.headerStyle), 'width') }
