@@ -40,11 +40,13 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
       border-top: 2px solid var(--primary-epc-table-select-border);
       border-left: 1px solid var(--primary-epc-table-select-border);
       border-right: 1px solid var(--primary-epc-table-select-border);
-      box-shadow: inset -1px 0 0 var(--primary-epc-table-select-border), // right
-        inset 1px 0 0 var(--primary-epc-table-select-border); // left
-      &:hover {
-        box-shadow: inset -1px 0 0 var(--primary-epc-table-select-border), // right
-        inset 1px 0 0 var(--primary-epc-table-select-border); // left
+      .ant-table-cell {
+        &:first-child {
+          box-shadow: inset 1px 0 0 var(--primary-epc-table-select-border); // left
+        }
+        &:last-child {
+          box-shadow: inset -1px 0 0 var(--primary-epc-table-select-border); // right
+        }
       }
       + .ant-table-row {
         border-top: 2px solid var(--primary-epc-table-select-border);
