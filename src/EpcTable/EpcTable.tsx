@@ -35,6 +35,8 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
     }
   }
   .ant-table-row {
+    box-sizing: border-box;
+    width: 100%;
     &.selected {
       background: var(--primary-epc-table-select-bg);
       border: 2px solid var(--primary-epc-table-select-border);
