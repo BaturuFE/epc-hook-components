@@ -38,15 +38,20 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
     &.selected {
       background: var(--primary-epc-table-select-bg);
       border-top: 2px solid var(--primary-epc-table-select-border);
-      border-left: 1px solid var(--primary-epc-table-select-border);
-      border-right: 1px solid var(--primary-epc-table-select-border);
-      .ant-table-cell {
-        &:first-child {
-          box-shadow: inset 1px 0 0 var(--primary-epc-table-select-border); // left
-        }
-        &:last-child {
-          box-shadow: inset -1px 0 0 var(--primary-epc-table-select-border); // right
-        }
+      position: relative;
+      &:before, &:after {
+        content: "";
+        position: absolute;
+        background: var(--primary-epc-table-select-border);
+        width: 2px;
+        top: 0;
+        bottom: 0;
+      }
+      &:before {
+        left: -1px;
+      }
+      &:after {
+        right: -1px;
       }
       + .ant-table-row {
         border-top: 2px solid var(--primary-epc-table-select-border);
