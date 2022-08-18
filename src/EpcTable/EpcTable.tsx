@@ -103,10 +103,10 @@ export const EpcTable: FC<{
         dataIndex: conf.field,
         width: conf.headerStyle?.width || conf.columnStyle?.width,
         onHeaderCell() {
-          return { style: omit(assign({}, conf.columnStyle, conf.headerStyle), 'width') }
+          return { style: omit(assign({ textAlign: 'center' }, conf.columnStyle, conf.headerStyle), 'width') }
         },
         onCell() {
-          return { style: omit(conf.columnStyle, 'width') };
+          return { style: omit(assign({ textAlign: 'center' }, conf.columnStyle), 'width') };
         },
         render(_, record) {
           const detail = record.details.find((d) => d.typeCode === conf.field);
