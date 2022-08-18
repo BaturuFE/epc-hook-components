@@ -1,5 +1,5 @@
 import { EpcTable } from './EpcTable/EpcTable';
 
 export {
-  EpcTable,
+  EpcTable as default,
 }

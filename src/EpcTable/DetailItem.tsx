@@ -26,9 +26,9 @@ export const StyledDetailItem = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     .value {
-      // 零件号定死宽度
-      width: 105px;
+      flex: 1;
     }
   }
   .cell {
@@ -58,13 +58,9 @@ export const StyledDetailItem = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 36px;
+    width: 18px;
     height: 100%;
     padding-left: 2px;
-  }
-  .correction {
-    margin-left: 2px;
-    cursor: pointer;
   }
 `;
 
@@ -93,13 +89,6 @@ export const DetailItem: FC<PartGenericFieldDTO & {
           {hasActions && (
             <div onClick={(e) => e.stopPropagation()} className="action">
               {props.needCopyValue && <CopyBtn value={props.value} width={16} height={16}/>}
-              {props.needErrorCorrection && props.isSelected && (
-                <Tooltip title="纠错">
-                  <span className="correction" onClick={props.onCorrectionClick}>
-                    <Iconfont width={16} height={16} name="icon-a-zu6326" color="#606266"/>
-                  </span>
-                </Tooltip>
-              )}
             </div>
           )}
         </div>
