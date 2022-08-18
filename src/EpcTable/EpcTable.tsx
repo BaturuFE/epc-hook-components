@@ -59,7 +59,6 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
         border-top: 2px solid var(--primary-epc-table-select-border);
         &.selected {
           border-top: none;
-          border-bottom: 2px solid var(--primary-epc-table-select-border);
         }
       }
     }
