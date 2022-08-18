@@ -10,7 +10,6 @@ import { DetailItem } from './DetailItem';
 import { PartsListConfig, PartsTableData } from '../types/data';
 import { ActionItem } from './ActionItem';
 import { useAsync } from 'react-use';
-import { AlignType } from 'rc-table/lib/interface';
 
 const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
   .ant-table table {
