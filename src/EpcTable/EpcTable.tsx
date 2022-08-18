@@ -10,6 +10,7 @@ import { DetailItem } from './DetailItem';
 import { PartsListConfig, PartsTableData } from '../types/data';
 import { ActionItem } from './ActionItem';
 import { useAsync } from 'react-use';
+import { AlignType } from 'rc-table/lib/interface';
 
 const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
   .ant-table table {
@@ -96,11 +97,10 @@ export const EpcTable: FC<{
 }> = (props) => {
   const columns: ColumnsType<PartsTableData> = !isEmpty(props.partsListConfigs)
     ? props.partsListConfigs
-      .concat({ field: 'action', title: '操作' })
+      .concat({ field: 'action', title: '操作', columnStyle: { textAlign: 'left' } })
       .map<ColumnType<PartsTableData>>(conf => ({
         title: conf.title,
         dataIndex: conf.field,
-        align: conf.field === 'action' ? 'left' : 'center',
         width: conf.headerStyle?.width || conf.columnStyle?.width,
         onHeaderCell() {
           return { style: omit(assign({}, conf.columnStyle, conf.headerStyle), 'width') }
