@@ -46,7 +46,7 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
           background: var(--primary-epc-table-select-border);
           width: 2px;
           top: 0;
-          bottom: 0;
+          bottom: -1px;
         }
         &:first-child:before {
           left: -1px;
