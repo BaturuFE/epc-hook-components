@@ -96,7 +96,7 @@ export const EpcTable: FC<{
 }> = (props) => {
   const columns: ColumnsType<PartsTableData> = !isEmpty(props.partsListConfigs)
     ? props.partsListConfigs
-      .concat({ field: 'action', title: '操作', headerStyle: { width: 150 } })
+      .concat({ field: 'action', title: '操作' })
       .map<ColumnType<PartsTableData>>(conf => ({
         title: conf.title,
         dataIndex: conf.field,
