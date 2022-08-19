@@ -18,6 +18,9 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
   }
   .ant-table-body {
     height: 100vh; // 尽可能大，实际上 body 还有 max-height 配合控制，所以不用担心高度过大
+    .ant-table-cell {
+      padding: 4px 8px !important;
+    }
     table {
       border-top: none;
     }
@@ -26,13 +29,15 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
     }
   }
   .ant-table-thead {
-    .ant-table-cell:before {
-      display: none;
-    }
-    th {
+    .ant-table-cell {
+      padding: 4px 0 !important;
       color: #606266;
       background-color: #f5f5f5;
       font-weight: bold;
+      text-align: center;
+    }
+    .ant-table-cell:before {
+      display: none;
     }
   }
   .ant-table-row {
@@ -74,7 +79,6 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
     font-size: 14px;
     border: 1px solid #dcdfe6;
     border-top: none;
-    padding: 4px 8px !important;
   }
 `;
 
@@ -102,15 +106,11 @@ export const EpcTable: FC<{
         field: 'action',
         title: '操作',
         columnStyle: { textAlign: 'left', width: props.isFromSDK ? 130 : 80 },
-        headerStyle: { textAlign: 'center' }
       })
       .map<ColumnType<PartsTableData>>(conf => ({
         title: conf.title,
         dataIndex: conf.field,
-        width: conf.headerStyle?.width || conf.columnStyle?.width,
-        onHeaderCell() {
-          return { style: omit(assign({ textAlign: 'center' }, conf.columnStyle, conf.headerStyle), 'width') }
-        },
+        width: conf.columnStyle?.width,
         onCell() {
           return { style: omit(assign({ textAlign: 'center' }, conf.columnStyle), 'width') };
         },
