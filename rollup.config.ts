@@ -12,8 +12,8 @@ import cssnano from 'cssnano';
 
 export default defineConfig({
   input: './src/main.ts',
-  output: {
-    format: 'umd',
+  output: [{
+    format: 'cjs',
     file: './dist/lib.js',
     name: 'epc-hook-components',
     sourcemap: true,
@@ -23,7 +23,18 @@ export default defineConfig({
       'lodash': 'lodash',
       'classnames': 'classnames',
     }
-  },
+  }, {
+    format: 'esm',
+    file: './dist/lib.esm.js',
+    name: 'epc-hook-components',
+    sourcemap: true,
+    globals: {
+      react: 'React',
+      'react-dom': 'ReactDOM',
+      'lodash': 'lodash',
+      'classnames': 'classnames',
+    }
+  }],
   plugins: [
     typescript({ tsconfig: './tsconfig.json' }),
     nodeResolve(),

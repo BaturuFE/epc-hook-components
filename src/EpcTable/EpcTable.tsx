@@ -74,7 +74,7 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
     font-size: 14px;
     border: 1px solid #dcdfe6;
     border-top: none;
-    padding: 4px !important;
+    padding: 4px 8px !important;
   }
 `;
 

@@ -3,6 +3,7 @@
   "version": "1.0.6-beta.20",
   "description": "Baturu epc hook components",
   "main": "dist/lib.js",
+  "module": "dist/lib.esm.js",
   "types": "dist/main.d.ts",
   "files": [
     "dist",
@@ -22,8 +23,8 @@
     "@babel/preset-react": "^7.17.12",
     "@baturu/yitian-sdk": "^2.5.3",
     "@emotion/babel-plugin": "^11.9.2",
-    "@emotion/react": "^11.9.3",
-    "@emotion/styled": "^11.9.3",
+    "@emotion/react": "11.7.1",
+    "@emotion/styled": "11.6.0",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-image": "^2.1.1",
