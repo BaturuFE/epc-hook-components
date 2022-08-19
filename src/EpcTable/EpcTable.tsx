@@ -17,6 +17,7 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
     border-collapse: collapse;
   }
   .ant-table-body {
+    height: 100vh; // 尽可能大，实际上 body 还有 max-height 配合控制，所以不用担心高度过大
     table {
       border-top: none;
     }
@@ -97,7 +98,12 @@ export const EpcTable: FC<{
 }> = (props) => {
   const columns: ColumnsType<PartsTableData> = !isEmpty(props.partsListConfigs)
     ? props.partsListConfigs
-      .concat({ field: 'action', title: '操作', columnStyle: { textAlign: 'left', width: props.isFromSDK ? 130 : 80 } })
+      .concat({
+        field: 'action',
+        title: '操作',
+        columnStyle: { textAlign: 'left', width: props.isFromSDK ? 130 : 80 },
+        headerStyle: { textAlign: 'center' }
+      })
       .map<ColumnType<PartsTableData>>(conf => ({
         title: conf.title,
         dataIndex: conf.field,
@@ -144,8 +150,9 @@ export const EpcTable: FC<{
     await Promise.resolve(); // 这里的目标是要实现类似于 Vue.nextTick 的效果
     const header = document.querySelector<HTMLDivElement>('.epc-table .ant-table-header');
     const headerHeight = header?.offsetHeight || 38;
-    setY(Number(props.containerHeight.replace(/px/g, '')) - headerHeight);
-  }, [props.partsListConfigs]);
+    const containerHeight = Number(props.containerHeight.replace(/px/g, ''));
+    setY(containerHeight - headerHeight);
+  }, [props.partsListConfigs, props.containerHeight]);
 
   return (
     <>
