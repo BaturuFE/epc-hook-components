@@ -112,6 +112,7 @@ export const EpcTable: FC<{
         title: conf.title,
         dataIndex: conf.field,
         width: conf.columnStyle?.width,
+        fixed: conf.field === 'action' ? 'right' : undefined,
         onCell() {
           return { style: omit(assign({}, conf.columnStyle), 'width') };
         },
