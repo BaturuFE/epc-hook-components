@@ -20,6 +20,7 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
     height: 100vh; // 尽可能大，实际上 body 还有 max-height 配合控制，所以不用担心高度过大
     .ant-table-cell {
       padding: 4px 8px !important;
+      text-align: center;
     }
     table {
       border-top: none;
@@ -110,9 +111,12 @@ export const EpcTable: FC<{
       .map<ColumnType<PartsTableData>>(conf => ({
         title: conf.title,
         dataIndex: conf.field,
-        width: conf.columnStyle?.width,
+        width: conf.headerStyle?.width || conf.columnStyle?.width,
+        onHeaderCell() {
+          return { style: omit(assign({}, conf.headerStyle), 'width') };
+        },
         onCell() {
-          return { style: omit(assign({ textAlign: 'center' }, conf.columnStyle), 'width') };
+          return { style: omit(assign({}, conf.columnStyle), 'width') };
         },
         render(_, record) {
           const detail = record.details.find((d) => d.typeCode === conf.field);
