@@ -33,6 +33,5 @@ export interface PartsTableData {
 export interface PartsListConfig {
   field: string;
   title: string;
-  headerStyle?: CSSProperties;
   columnStyle?: CSSProperties;
 }

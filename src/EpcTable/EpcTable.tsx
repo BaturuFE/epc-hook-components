@@ -111,10 +111,7 @@ export const EpcTable: FC<{
       .map<ColumnType<PartsTableData>>(conf => ({
         title: conf.title,
         dataIndex: conf.field,
-        width: conf.headerStyle?.width || conf.columnStyle?.width,
-        onHeaderCell() {
-          return { style: omit(assign({}, conf.headerStyle), 'width') };
-        },
+        width: conf.columnStyle?.width,
         onCell() {
           return { style: omit(assign({}, conf.columnStyle), 'width') };
         },
