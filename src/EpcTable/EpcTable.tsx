@@ -1,6 +1,6 @@
 import { FC, useMemo, useState } from 'react';
 import styled from '@emotion/styled';
-import { Table } from 'antd';
+import { Spin, Table } from 'antd';
 import cns from 'classnames';
 import { PartsListOperation } from '@baturu/yitian-sdk';
 import { assign, isEmpty, omit } from 'lodash';
@@ -85,6 +85,7 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
 
 export const EpcTable: FC<{
   vinCode: string;
+  loading: boolean;
   tableGroupData: PartsTableData[];
   onRowClick: (row: PartsTableData) => void;
   activePosition: string;
@@ -158,7 +159,9 @@ export const EpcTable: FC<{
 
   return (
     <>
-      {isEmpty(props.tableGroupData) && <GroupDataMissing />}
+      {isEmpty(props.tableGroupData) && <Spin spinning={props.loading}>
+        <GroupDataMissing />
+      </Spin>}
       {!isEmpty(props.tableGroupData) && (
         <StyledTable
           size="small"
