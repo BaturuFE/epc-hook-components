@@ -47,7 +47,7 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
       border-top: 2px solid var(--primary-epc-table-select-border);
       .ant-table-cell {
         position: relative;
-        &:first-child:before, &:last-child:after {
+        &:first-child:after, &:last-child:before {
           content: "";
           position: absolute;
           background: var(--primary-epc-table-select-border);
@@ -55,10 +55,10 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
           top: 0;
           bottom: -1px;
         }
-        &:first-child:before {
+        &:first-child:after {
           left: -1px;
         }
-        &:last-child:after {
+        &:last-child:before {
           right: -1px;
         }
       }
@@ -67,6 +67,10 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
         &.selected {
           border-top: none;
         }
+      }
+      .ant-table-cell-fix-left,
+      .ant-table-cell-fix-right {
+        background-color: var(--primary-epc-table-select-bg);;
       }
     }
     &:last-child.selected {
