@@ -26,7 +26,7 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
       border-top: none;
     }
     .ant-table-row:hover .ant-table-cell {
-      background: var(--primary-epc-table-select-bg);
+      background: ${props => props.theme.primaryEpcTableSelectBg};
     }
   }
   .ant-table-thead {
@@ -43,14 +43,14 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
   }
   .ant-table-row {
     &.selected {
-      background: var(--primary-epc-table-select-bg);
-      border-top: 2px solid var(--primary-epc-table-select-border);
+      background: ${props => props.theme.primaryEpcTableSelectBg};
+      border-top: 2px solid ${props => props.theme.primaryEpcTableSelectBorder};
       .ant-table-cell {
         position: relative;
         &:first-child:after, &:last-child:before {
           content: "";
           position: absolute;
-          background: var(--primary-epc-table-select-border);
+          background: ${props => props.theme.primaryEpcTableSelectBorder};
           width: 2px;
           top: 0;
           bottom: -1px;
@@ -63,18 +63,18 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
         }
       }
       + .ant-table-row {
-        border-top: 2px solid var(--primary-epc-table-select-border);
+        border-top: 2px solid ${props => props.theme.primaryEpcTableSelectBorder};
         &.selected {
           border-top: none;
         }
       }
       .ant-table-cell-fix-left,
       .ant-table-cell-fix-right {
-        background-color: var(--primary-epc-table-select-bg);;
+        background-color: ${props => props.theme.primaryEpcTableSelectBg};
       }
     }
     &:last-child.selected {
-      border-bottom: 2px solid var(--primary-epc-table-select-border);
+      border-bottom: 2px solid ${props => props.theme.primaryEpcTableSelectBorder};
     }
     &.red {
       color: #eb3341;
@@ -140,8 +140,7 @@ export const EpcTable: FC<{
                 <DetailItem
                   {...detail!}
                   isSelected={props.selectedIndexes.includes(record.dataIndex)}
-                  onCorrectionClick={() => props.onCorrectionClick(record.partsCode)}
-                />
+                  onCorrectionClick={() => props.onCorrectionClick(record.partsCode)} />
               )}
             </>
           );
