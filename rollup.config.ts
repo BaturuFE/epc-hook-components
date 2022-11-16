@@ -22,6 +22,7 @@ export default defineConfig({
       'react-dom': 'ReactDOM',
       'lodash': 'lodash',
       'classnames': 'classnames',
+      '@emotion/styled': 'styled',
     }
   }, {
     format: 'esm',
@@ -33,6 +34,7 @@ export default defineConfig({
       'react-dom': 'ReactDOM',
       'lodash': 'lodash',
       'classnames': 'classnames',
+      '@emotion/styled': 'styled',
     }
   }],
   plugins: [
@@ -65,7 +67,7 @@ export default defineConfig({
     commonjs({ include: 'node_modules/**' }),
     terser({ format: { comments: false } }),
   ],
-  external: ['react', 'react-dom', 'lodash', 'classnames'],
+  external: ['react', 'react-dom', 'lodash', 'classnames', '@emotion/styled'],
   onwarn(warning, warn) {
     if (warning.id && warning.id.includes('node_modules')) return;
     if (warning.importer && warning.importer.includes('node_modules')) return;
