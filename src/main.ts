@@ -1,5 +1,5 @@
 import { EpcTable } from './EpcTable/EpcTable';
-import { ColorTest } from './ColorTest';
+import { ColorTest } from './ColorTest/ColorTest';
 
 export {
   EpcTable,

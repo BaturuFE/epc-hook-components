@@ -1,10 +1,10 @@
 {
   "name": "@baturu/epc-hook-components",
-  "version": "1.0.9-beta.2",
+  "version": "1.0.9-beta.3",
   "description": "Baturu epc hook components",
   "main": "dist/lib.js",
   "module": "dist/lib.esm.js",
-  "types": "dist/main.d.ts",
+  "types": "dist/src/main.d.ts",
   "files": [
     "dist",
     "README.md"
