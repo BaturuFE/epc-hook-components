@@ -22,7 +22,6 @@ export default defineConfig({
       'react-dom': 'ReactDOM',
       'lodash': 'lodash',
       'classnames': 'classnames',
-      '@emotion/styled': 'styled',
       '@emotion/react': 'emotionReact',
     }
   }, {
@@ -35,7 +34,6 @@ export default defineConfig({
       'react-dom': 'ReactDOM',
       'lodash': 'lodash',
       'classnames': 'classnames',
-      '@emotion/styled': 'styled',
       '@emotion/react': 'emotionReact',
     }
   }],
@@ -69,7 +67,7 @@ export default defineConfig({
     commonjs({ include: 'node_modules/**' }),
     terser({ format: { comments: false } }),
   ],
-  external: ['react', 'react-dom', 'lodash', 'classnames', '@emotion/styled', '@emotion/react'],
+  external: ['react', 'react-dom', 'lodash', 'classnames', '@emotion/react'],
   onwarn(warning, warn) {
     if (warning.id && warning.id.includes('node_modules')) return;
     if (warning.importer && warning.importer.includes('node_modules')) return;
