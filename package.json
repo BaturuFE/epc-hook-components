@@ -13,7 +13,7 @@
     "dev": "rollup --config rollup.config.ts --configPlugin typescript --watch",
     "build": "cross-env NODE_ENV=production rollup --config rollup.config.ts --configPlugin typescript",
     "host": "http-server -g -p 8082 --cors='*' dist",
-    "prepublishOnly": "npm run build && bump -acpt"
+    "release": "npm run build && bump -acpt && npm publish"
   },
   "author": "Baturu",
   "license": "ISC",
