@@ -47,7 +47,7 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
       border-top: 2px solid ${props => props.theme.primaryEpcTableSelectBorder};
       .ant-table-cell {
         position: relative;
-        &:first-child:after, &:last-child:before {
+        &:first-of-type:after, &:last-of-type:before {
           content: "";
           position: absolute;
           background: ${props => props.theme.primaryEpcTableSelectBorder};
@@ -55,10 +55,10 @@ const StyledTable = styled<typeof Table<PartsTableData>>(Table)`
           top: 0;
           bottom: -1px;
         }
-        &:first-child:after {
+        &:first-of-type:after {
           left: -1px;
         }
-        &:last-child:before {
+        &:last-of-type:before {
           right: -1px;
         }
       }
