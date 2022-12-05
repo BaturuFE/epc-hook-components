@@ -67,7 +67,7 @@ export const DetailItem: FC<PartGenericFieldDTO & {
   isSelected: boolean;
   onCorrectionClick: MouseEventHandler<HTMLSpanElement>;
 }> = (props) => {
-  const needPopover = props.typeCode === 'btrPartsNames';
+  const needPopover = props.typeCode === 'btrPartsNames' && props.value;
   const hasActions = props.value && (props.needCopyValue || props.needErrorCorrection);
   return (
     <StyledDetailItem>
