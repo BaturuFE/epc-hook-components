@@ -69,18 +69,17 @@ export const ActionItem: FC<{
     buttonAdd = (
       <ActionButton
         className={cns({ disabled: props.isPartsCodeAdded && !props.allowCancelAddedParts })}
-        onClick={props.onAddPart}
-      >
+        onClick={props.onAddPart}>
         {props.isPartsCodeAdded ? textDel : '添加'}
       </ActionButton>
     );
   }
   return (
     <>
-      {props.operationAvailable !== false && (
+      {props.operationAvailable !== false && <>
         <ActionButton onClick={props.onDetailClick}>详情</ActionButton>
-      )}
-      {extraOperations || buttonAdd}
+        {extraOperations || buttonAdd}
+      </>}
     </>
   );
 };

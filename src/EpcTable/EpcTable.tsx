@@ -97,7 +97,6 @@ export const EpcTable: FC<{
   enableFilter: boolean;
   isFromSDK: boolean;
   partsListOperation: PartsListOperation[];
-  onCorrectionClick: (partsCode: string) => void;
   containerHeight: string;
   partsListConfigs: PartsListConfig[];
   onDetailClick: (item: PartsTableData) => void;
@@ -122,7 +121,6 @@ export const EpcTable: FC<{
           return { style: omit(assign({}, conf.columnStyle), 'width') };
         },
         render(_, record) {
-          const detail = record.details.find((d) => d.typeCode === conf.field);
           return (
             <>
               {conf.field === 'action' ? (
@@ -138,9 +136,9 @@ export const EpcTable: FC<{
                 />
               ) : (
                 <DetailItem
-                  {...detail!}
-                  isSelected={props.selectedIndexes.includes(record.dataIndex)}
-                  onCorrectionClick={() => props.onCorrectionClick(record.partsCode)} />
+                  {...conf}
+                  {...record!}
+                  isSelected={props.selectedIndexes.includes(record.dataIndex)} />
               )}
             </>
           );

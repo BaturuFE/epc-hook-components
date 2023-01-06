@@ -3,7 +3,7 @@ import { FC, MouseEventHandler } from 'react';
 import { Popover } from 'antd';
 import cns from 'classnames';
 import CopyBtn from './CopyBtn';
-import { PartGenericFieldDTO } from '../types/data';
+import { PartGenericFieldDTO, PartsListConfig, PartsTableData } from '../types/data';
 
 export const StyledDetailItem = styled.div`
   .popover-field {
@@ -63,31 +63,29 @@ export const StyledDetailItem = styled.div`
   }
 `;
 
-export const DetailItem: FC<PartGenericFieldDTO & {
+export const DetailItem: FC<PartsTableData & PartsListConfig & {
   isSelected: boolean;
-  onCorrectionClick: MouseEventHandler<HTMLSpanElement>;
 }> = (props) => {
-  const needPopover = props.typeCode === 'btrPartsNames';
-  const hasActions = props.value && (props.needCopyValue || props.needErrorCorrection);
+  const fieldValue = props[props.field as keyof PartsTableData] || props.extendFields[props.field];
+  const __html = Array.isArray(fieldValue) ? fieldValue.join('<br />') : fieldValue as string;
+  const hasCopyButton = __html && props.needCopy;
   return (
     <StyledDetailItem>
       <Popover
-        trigger={needPopover ? 'hover' : 'none'}
+        trigger={props.needPopover ? 'hover' : 'none'}
         placement="bottom"
         content={
-          <div className="popover-field" dangerouslySetInnerHTML={{ __html: props.value }}/>
-        }
-      >
+          <div className="popover-field" dangerouslySetInnerHTML={{ __html }}/>
+        }>
         <div
           className={cns('cell', {
-            'flex-row': hasActions,
+            'flex-row': hasCopyButton,
             selected: props.isSelected,
-          })}
-        >
-          <div className="value" dangerouslySetInnerHTML={{ __html: props.value }}/>
-          {hasActions && (
+          })}>
+          <div className="value" dangerouslySetInnerHTML={{ __html }}/>
+          {hasCopyButton && (
             <div onClick={(e) => e.stopPropagation()} className="action">
-              {props.needCopyValue && <CopyBtn value={props.value} width={16} height={16}/>}
+              <CopyBtn value={__html} width={16} height={16} />
             </div>
           )}
         </div>
