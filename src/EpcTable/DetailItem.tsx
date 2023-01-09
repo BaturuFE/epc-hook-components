@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
-import { FC, MouseEventHandler } from 'react';
+import { FC } from 'react';
 import { Popover } from 'antd';
 import cns from 'classnames';
 import CopyBtn from './CopyBtn';
-import { PartGenericFieldDTO, PartsListConfig, PartsTableData } from '../types/data';
+import { PartsListConfig, PartsTableData } from '../types/data';
 
 export const StyledDetailItem = styled.div`
   .popover-field {

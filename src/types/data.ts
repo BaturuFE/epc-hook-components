@@ -15,21 +15,6 @@ export type PartsItem = {
   vinAvailable: number; // 与旧接口定义保持一致，表示是否适用于该VIN码；
 }
 
-export interface PartGenericFieldDTO {
-  // 前端展示的表头信息
-  type: string;
-  typeCode: string;
-  // 前端展示的value信息
-  value: string;
-  valueDesc: string;
-  // 值是否需要复制
-  needCopyValue: boolean;
-  // 	值是否需要纠错功能
-  needErrorCorrection: boolean;
-  // 当 hidden 为 true 才隐藏
-  hidden?: boolean | null;
-}
-
 export interface PartsTableData extends PartsItem {
   // 下标 过滤前设置
   dataIndex: string;
