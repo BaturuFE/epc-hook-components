@@ -68,11 +68,12 @@ export const DetailItem: FC<PartsTableData & PartsListConfig & {
 }> = (props) => {
   const fieldValue = props[props.field as keyof PartsTableData] || props.extendFields[props.field];
   const __html = Array.isArray(fieldValue) ? fieldValue.join('<br />') : fieldValue as string;
+  const hasPopover = __html && props.needPopover;
   const hasCopyButton = __html && props.needCopy;
   return (
     <StyledDetailItem>
       <Popover
-        trigger={props.needPopover ? 'hover' : 'none'}
+        trigger={hasPopover ? 'hover' : 'none'}
         placement="bottom"
         content={
           <div className="popover-field" dangerouslySetInnerHTML={{ __html }}/>
